@@ -1,0 +1,12 @@
+<!-- reservas/templates/reservas/confirmation.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reserva Confirmada</title>
+</head>
+<body>
+<h1>Reserva confirmada</h1>
+<p>Gracias, {{ reservation.guest_name }}. Su reserva para {{ reservation.activity.name }} en {{ reservation.schedule.date }} de {{ reservation.schedule.start_time }} ha sido realizada.</p>
+<a href="{% url 'index' %}">Volver al inicio</a>
+</body>
+</html>

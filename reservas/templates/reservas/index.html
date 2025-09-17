@@ -1,0 +1,208 @@
+{% extends 'reservas/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}Hotel Paradise - Inicio{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 hero-content">
+                <h1 class="display-4 fw-bold mb-4 slide-in-left">
+                    Bienvenido a Hotel Paradise
+                </h1>
+                <p class="lead mb-4 slide-in-left">
+                    Descubre el paraíso en la tierra. Habitaciones de lujo, actividades emocionantes 
+                    y un servicio excepcional te esperan.
+                </p>
+                <div class="slide-in-left">
+                    <a href="{% url 'rooms_list' %}" class="btn btn-primary btn-lg me-3">
+                        <i class="fas fa-bed me-2"></i>Reservar Habitación
+                    </a>
+                    <a href="{% url 'activities_list' %}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-swimming-pool me-2"></i>Ver Actividades
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                     alt="Hotel Paradise" class="img-fluid rounded shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Search -->
+<section class="container">
+    <div class="search-form">
+        <h3 class="text-center mb-4">
+            <i class="fas fa-search me-2"></i>Buscar Disponibilidad
+        </h3>
+        <form method="GET" action="{% url 'rooms_list' %}" class="row g-3">
+            <div class="col-md-3">
+                <label for="check_in" class="form-label">Entrada</label>
+                <input type="date" class="form-control" name="check_in" 
+                       min="{{ today|date:'Y-m-d' }}" value="{{ today|date:'Y-m-d' }}">
+            </div>
+            <div class="col-md-3">
+                <label for="check_out" class="form-label">Salida</label>
+                <input type="date" class="form-control" name="check_out" 
+                       min="{{ today|add_days:1|date:'Y-m-d' }}" value="{{ today|add_days:1|date:'Y-m-d' }}">
+            </div>            
+            <div class="col-md-3">
+                <label for="guests" class="form-label">Huéspedes</label>
+                <select class="form-control" name="guests">
+                    <option value="1">1 Huésped</option>
+                    <option value="2">2 Huéspedes</option>
+                    <option value="3">3 Huéspedes</option>
+                    <option value="4">4 Huéspedes</option>
+                    <option value="5+">5+ Huéspedes</option>
+                </select>
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="fas fa-search me-2"></i>Buscar
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Featured Room Types -->
+<section class="container my-5">
+    <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">Nuestras Habitaciones</h2>
+        <p class="lead text-muted">Confort y elegancia en cada detalle</p>
+    </div>
+    
+    <div class="row">
+        {% for room_type in room_types %}
+        <div class="col-lg-4 col-md-6 mb-4 animate-on-scroll">
+            <div class="card h-100">
+                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                     class="card-img-top" alt="{{ room_type.name }}">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ room_type.name }}</h5>
+                    <p class="card-text flex-grow-1">{{ room_type.description|truncatewords:20 }}</p>
+                    
+                    <div class="mb-3">
+                        <ul class="amenities-list">
+                            {% for amenity in room_type.amenities|split:"," %}
+                                <li>{{ amenity|title }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="price-display">${{ room_type.price_per_night }}</span>
+                            <small class="price-label">/noche</small>
+                        </div>
+                        <a href="{% url 'rooms_list' %}" class="btn btn-primary">
+                            Ver Disponibilidad
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="text-center mt-4">
+        <a href="{% url 'rooms_list' %}" class="btn btn-outline-primary btn-lg">
+            Ver Todas las Habitaciones
+        </a>
+    </div>
+</section>
+
+<!-- Featured Activities -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Actividades Destacadas</h2>
+            <p class="lead text-muted">Experiencias únicas para todos los gustos</p>
+        </div>
+        
+        <div class="row">
+            {% for activity in activities %}
+            <div class="col-lg-4 col-md-6 mb-4 animate-on-scroll">
+                <div class="card h-100">
+                    {% if activity.image %}
+                        <img src="{{ activity.image }}" class="card-img-top" alt="{{ activity.name }}">
+                    {% else %}
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top" alt="{{ activity.name }}">
+                    {% endif %}
+                    
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title">{{ activity.name }}</h5>
+                            <span class="category-badge category-{{ activity.category }}">
+                                {{ activity.get_category_display }}
+                            </span>
+                        </div>
+                        
+                        <p class="card-text flex-grow-1">{{ activity.description|truncatewords:15 }}</p>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                {% if activity.price > 0 %}
+                                    <span class="price-display">${{ activity.price }}</span>
+                                {% else %}
+                                    <span class="badge bg-success">Gratis</span>
+                                {% endif %}
+                            </div>
+                            <a href="{% url 'activity_detail' activity.id %}" class="btn btn-primary">
+                                <i class="fas fa-info-circle me-1"></i>Ver Detalles
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{% url 'activities_list' %}" class="btn btn-outline-primary btn-lg">
+                Ver Todas las Actividades
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="container my-5">
+    <div class="row text-center">
+        <div class="col-md-3 mb-4 animate-on-scroll">
+            <div class="p-4">
+                <i class="fas fa-wifi fa-3x text-primary mb-3"></i>
+                <h5>WiFi Gratis</h5>
+                <p class="text-muted">Internet de alta velocidad en todo el hotel</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4 animate-on-scroll">
+            <div class="p-4">
+                <i class="fas fa-swimming-pool fa-3x text-primary mb-3"></i>
+                <h5>Piscina</h5>
+                <p class="text-muted">Piscina climatizada disponible 24/7</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4 animate-on-scroll">
+            <div class="p-4">
+                <i class="fas fa-spa fa-3x text-primary mb-3"></i>
+                <h5>Spa & Wellness</h5>
+                <p class="text-muted">Relájate en nuestro spa de clase mundial</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4 animate-on-scroll">
+            <div class="p-4">
+                <i class="fas fa-utensils fa-3x text-primary mb-3"></i>
+                <h5>Restaurante</h5>
+                <p class="text-muted">Cocina gourmet con ingredientes locales</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

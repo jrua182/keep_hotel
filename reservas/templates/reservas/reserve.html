@@ -1,0 +1,19 @@
+<!-- reservas/templates/reservas/reserve.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reserva para {{ schedule.activity.name }}</title>
+</head>
+<body>
+<h1>Reserva para {{ schedule.activity.name }}</h1>
+<form method="post">
+    {% csrf_token %}
+    <label>Nombre:</label><br>
+    <input type="text" name="guest_name" required><br>
+    <label>Email:</label><br>
+    <input type="email" name="guest_email" required><br>
+    <button type="submit">Confirmar Reserva</button>
+</form>
+<a href="{% url 'activity_detail' schedule.activity.id %}">Volver</a>
+</body>
+</html>
