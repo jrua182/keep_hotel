@@ -25,5 +25,5 @@ Sistema de reservas para hotel desarrollado con Django. Permite gestionar reserv
 
 ### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/tu-usuario/hotel-paradise.git
-cd hotel-paradise
+git clone https://github.com/tu-usuario/keep_hotel.git
+cd keep_hotel
