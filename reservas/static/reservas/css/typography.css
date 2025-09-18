@@ -1,0 +1,57 @@
+/* ==========================================================================
+   Typography and Text Styling
+   ========================================================================== */
+
+/* Base Typography */
+body {
+    font-family: var(--font-family-primary);
+    padding-top: 76px; /* For fixed navbar */
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6, 
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+    font-family: var(--font-family-heading);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
+/* Navbar Brand */
+.navbar-brand {
+    font-family: var(--font-family-heading) !important;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Hero Content Typography */
+.hero-content h1 {
+    font-family: var(--font-family-heading);
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    letter-spacing: -0.02em;
+}
+
+.hero-content p {
+    font-family: var(--font-family-primary);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #5a6c7d;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    line-height: 1.7;
+}
+
+/* Text Utilities */
+.text-elegant {
+    font-family: var(--font-family-heading);
+    letter-spacing: -0.01em;
+}
+
+.text-refined {
+    font-family: var(--font-family-primary);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}

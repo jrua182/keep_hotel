@@ -1,0 +1,20 @@
+/* ==========================================================================
+   Hotel Paradise - Main Stylesheet
+   
+   Import order is important:
+   1. Variables (used by all other files)
+   2. Typography (base styles)
+   3. Components (reusable elements)
+   4. Layout (major sections)
+   5. Pages (specific features)
+   ========================================================================== */
+
+@import url('variables.css');
+@import url('typography.css');
+@import url('components.css');
+@import url('layout.css');
+@import url('pages.css');
+
+/* ==========================================================================
+   Any additional global styles can go here
+   ========================================================================== */

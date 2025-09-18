@@ -1,0 +1,199 @@
+/* ==========================================================================
+   Reusable Components (Buttons, Cards, Forms, etc.)
+   ========================================================================== */
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+/* Base Button Styling */
+.btn {
+    font-family: var(--font-family-primary) !important;
+    font-weight: 500 !important;
+    padding: 14px 32px !important;
+    border-radius: 0 !important;
+    border: none;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    font-size: 0.9rem !important;
+    transition: var(--transition-elegant) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background: transparent;
+    border-width: 2px !important;
+}
+
+/* Button Shimmer Effect */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+/* Primary Buttons */
+.btn-primary {
+    background: var(--primary-color) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background: transparent !important;
+    color: var(--primary-color) !important;
+    border: 2px solid var(--primary-color) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* Outline Buttons */
+.btn-outline-primary,
+.btn-outline-secondary,
+.btn-outline-dark {
+    background: transparent !important;
+    transform: translateY(0) !important;
+}
+
+.btn-outline-primary {
+    color: var(--primary-color) !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1) !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+    background: var(--primary-color) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(44, 62, 80, 0.3) !important;
+}
+
+.btn-outline-dark {
+    background: transparent !important;
+    color: var(--primary-color) !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1) !important;
+}
+
+.btn-outline-dark:hover,
+.btn-outline-dark:focus,
+.btn-outline-dark:active {
+    background: var(--primary-color) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(44, 62, 80, 0.3) !important;
+}
+
+/* Button Sizes */
+.btn-lg {
+    padding: 18px 40px !important;
+    font-size: 1rem !important;
+}
+
+.btn-sm {
+    padding: 10px 24px !important;
+    font-size: 0.8rem !important;
+}
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-smooth);
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+.form-control {
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    padding: 12px 15px;
+    transition: var(--transition-smooth);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.25) !important;
+}
+
+.form-label {
+    font-weight: 500;
+    color: var(--dark-color);
+    margin-bottom: 8px;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+/* ==========================================================================
+   Bootstrap Component Overrides
+   ========================================================================== */
+
+/* Colors */
+.bg-primary { background-color: var(--primary-color) !important; }
+.text-primary { color: var(--primary-color) !important; }
+.border-primary { border-color: var(--primary-color) !important; }
+
+/* Badges */
+.badge.bg-primary { background-color: var(--primary-color) !important; }
+
+/* Alerts */
+.alert-primary {
+    background-color: rgba(44, 62, 80, 0.1) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
+}
+
+/* Links */
+a.text-primary:hover,
+a.text-primary:focus {
+    color: #1a252f !important;
+}
+
+/* Pagination */
+.page-link {
+    color: var(--primary-color) !important;
+}
+
+.page-item.active .page-link {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}

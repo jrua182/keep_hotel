@@ -10,16 +10,16 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     {% load static %}
-    <link rel="stylesheet" href="{% static 'reservas/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'reservas/css/main.css' %}">
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="{% url 'index' %}">
+            <a class="navbar-brand fw-bold text-dark" href="{% url 'index' %}">
                 <i class="fas fa-hotel me-2"></i>Hotel Paradise
             </a>
             
@@ -27,23 +27,49 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+            <div class="collapse navbar-collapse navbar" id="navbarNav">
+                <ul class="navbar-nav ms-auto navbar-routes">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'index' %}">
-                            <i class="fas fa-home me-1"></i>Inicio
+                        <a class="nav-link text-dark" href="{% url 'index' %}">
+                            Inicio
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'rooms_list' %}">
-                            <i class="fas fa-bed me-1"></i>Habitaciones
+                        <a class="nav-link text-dark" href="{% url 'rooms_list' %}">
+                            Habitaciones
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'activities_list' %}">
-                            <i class="fas fa-swimming-pool me-1"></i>Actividades
+                        <a class="nav-link text-dark" href="{% url 'activities_list' %}">
+                            Actividades
                         </a>
                     </li>
+                </ul>
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ user.username }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                                <li><a class="dropdown-item" href="#">Mis Reservas</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{% url 'admin:logout' %}">Cerrar Sesión</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="{% url 'admin:login' %}">
+                                Iniciar Sesión
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-dark ms-2 text-dark" href="#" style="border-radius: 20px;">
+                                Registrarse
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
